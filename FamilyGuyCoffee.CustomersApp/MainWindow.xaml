@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FamilyGuyCoffee.CustomersApp"
+        xmlns:controls="clr-namespace:FamilyGuyCoffee.CustomersApp.Controls"
+        xmlns:views="clr-namespace:FamilyGuyCoffee.CustomersApp.Views"
         mc:Ignorable="d"
         Title="MainWindow"
         d:DesignWidth="500"
@@ -27,68 +29,23 @@
         </Button>-->
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu Grid.ColumnSpan="3" FontSize="20">
+        <Menu  FontSize="20">
             <MenuItem Header="_View">
-
-
                 <MenuItem Header="_Customers"></MenuItem>
                 <MenuItem Header="_Products"></MenuItem>
             </MenuItem>
         </Menu>
+        <controls:HeaderControl Grid.Column="0" Grid.Row="1"  />
+        <!-- Added HeaderControl here -->
+        <views:CustomersView Grid.Row="2" Grid.Column="0" />    
 
-        <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Background="#F05A28">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Image Source="Images/logo.png" Width="100" Margin="5,5,5,5"></Image>
-                <TextBlock Text="Customers App" FontSize="30" Foreground="White" VerticalAlignment="Center"></TextBlock>
-                <TextBlock Text="Version 1.0" FontSize="16" Foreground="#333333" VerticalAlignment="Bottom" Margin="10 0 0 22"></TextBlock>
-            </StackPanel>
-        </Grid>
-        <Grid x:Name="CustomerListGrid" Grid.Column="0" Grid.Row="2" Background="#777">
-            <Grid.RowDefinitions>
-
-                <RowDefinition Height="Auto" />
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button Margin="10" Width="75">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="Images/add.png" Height="18" />
-                        <TextBlock Text="Add" />
-                    </StackPanel>
-                </Button>
-                <Button Content="Delete" Margin="0 10 10 10" Width="75"></Button>
-
-                <Button Click="ButtonBase_OnClick"  Margin="0 10 10 10">
-                    <Image Source="Images/move.png" Height="18"></Image>
-                </Button>
-            </StackPanel>
-            <ListView Grid.Row="1" Margin="10 0 10 10">
-                <ListViewItem>Julia</ListViewItem>
-                <ListViewItem>Michael</ListViewItem>
-                <ListViewItem>Sarah</ListViewItem>
-            </ListView>
-        </Grid>
-        <StackPanel Grid.Row="2" Grid.Column="1" Margin="10">
-            <Label>Firstname:</Label>
-            <TextBox Name="FirstnameTextBox"></TextBox>
-            <Label>Last Name:</Label>
-            <TextBox Name="LastnameTextBox"></TextBox>
-            <CheckBox Margin="0 10 0 0">
-                Is Developer
-            </CheckBox>
-        </StackPanel>
-        <StatusBar Grid.Row="3" Grid.ColumnSpan="3">
+        <StatusBar Grid.Row="3" >
             <StatusBarItem HorizontalAlignment="Center" FontSize="20" Content="(c) Family Guy Coffee" />
         </StatusBar>
     </Grid>
