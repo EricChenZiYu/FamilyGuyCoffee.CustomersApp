@@ -1,17 +1,23 @@
-﻿namespace FamilyGuyCoffee.CustomersApp.ViewModels
+﻿using FamilyGuyCoffee.CustomersApp.Commands;
+
+namespace FamilyGuyCoffee.CustomersApp.ViewModels
 {
     public class MainViewModel : ViewModelbase
     {
         private ViewModelbase? _selectedViewModel;
-        private CustomersViewModel _customerViewModel;
 
-        public MainViewModel(CustomersViewModel customersViewModel)
+        public MainViewModel(CustomersViewModel customersViewModel, ProductsViewModel productsViewModel)
         {
-
-
-            _customerViewModel = customersViewModel;
-            _selectedViewModel = customersViewModel;
+            ProductsViewModel = productsViewModel;
+            CustomerViewModel = customersViewModel;
+            _selectedViewModel = CustomerViewModel;
+            SelectViewModelCommand = new DelegateCommand(SelectViewModel);
         }
+
+        public ProductsViewModel ProductsViewModel { get; }
+        public CustomersViewModel CustomerViewModel { get; }
+        public DelegateCommand SelectViewModelCommand { get; }
+
         public ViewModelbase? SelectedViewModel
         {
             get => _selectedViewModel;
@@ -35,5 +41,12 @@
             await SelectedViewModel.LoadAsync();
 
         }
+
+        private async void SelectViewModel(object? parameter)
+        {
+            SelectedViewModel = parameter as ViewModelbase;
+            await LoadAsync();
+        }
+
     }
 }

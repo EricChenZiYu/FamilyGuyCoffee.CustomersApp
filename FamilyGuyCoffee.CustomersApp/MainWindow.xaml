@@ -16,6 +16,11 @@
         <DataTemplate DataType="{x:Type viewModels:CustomersViewModel}" >
             <views:CustomersView></views:CustomersView>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:ProductsViewModel}" >
+            <views:ProductsView></views:ProductsView>
+        </DataTemplate>
+
     </Window.Resources>
     <!--<Grid>
         <Grid.RowDefinitions>
@@ -43,8 +48,8 @@
         </Grid.RowDefinitions>
         <Menu  FontSize="20">
             <MenuItem Header="_View">
-                <MenuItem Header="_Customers"></MenuItem>
-                <MenuItem Header="_Products"></MenuItem>
+                <MenuItem Header="_Customers" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding CustomerViewModel}"></MenuItem>
+                <MenuItem Header="_Products" Command="{Binding SelectViewModelCommand}" CommandParameter="{Binding ProductsViewModel}"></MenuItem>
             </MenuItem>
         </Menu>
         <controls:HeaderControl Grid.Column="0" Grid.Row="1"  />
