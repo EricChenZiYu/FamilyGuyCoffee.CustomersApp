@@ -24,25 +24,25 @@ namespace FamilyGuyCoffee.CustomersApp.Views
         {
             await _viewModel.LoadAsync();
         }
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            //var column = (int)CustomerListGrid.GetValue(Grid.ColumnProperty);
-            //var newColumn = column == 0 ? 2 : 0;
-            //CustomerListGrid.SetValue(Grid.ColumnProperty, newColumn);
+        //private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    //var column = (int)CustomerListGrid.GetValue(Grid.ColumnProperty);
+        //    //var newColumn = column == 0 ? 2 : 0;
+        //    //CustomerListGrid.SetValue(Grid.ColumnProperty, newColumn);
 
-            //var column = Grid.GetColumn(CustomerListGrid);
-            //var newColumn = column == 0 ? 2 : 0;
-            //Grid.SetColumn(CustomerListGrid, newColumn);
+        //    //var column = Grid.GetColumn(CustomerListGrid);
+        //    //var newColumn = column == 0 ? 2 : 0;
+        //    //Grid.SetColumn(CustomerListGrid, newColumn);
 
-            _viewModel.MoveNavigation();
+        //    _viewModel.MoveNavigation();
 
 
-        }
+        //}
 
-        private void ButtonAdd_OnClick(object sender, RoutedEventArgs e)
-        {
+        //private void ButtonAdd_OnClick(object sender, RoutedEventArgs e)
+        //{
 
-            _viewModel.AddCustomer();
-        }
+        //    _viewModel.AddCustomer();
+        //}
     }
 }

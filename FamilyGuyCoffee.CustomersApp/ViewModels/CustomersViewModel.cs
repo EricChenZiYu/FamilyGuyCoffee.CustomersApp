@@ -1,4 +1,5 @@
-﻿using FamilyGuyCoffee.CustomersApp.Data;
+﻿using FamilyGuyCoffee.CustomersApp.Commands;
+using FamilyGuyCoffee.CustomersApp.Data;
 using FamilyGuyCoffee.CustomersApp.Models;
 using System.Collections.ObjectModel;
 
@@ -9,7 +10,9 @@ namespace FamilyGuyCoffee.CustomersApp.ViewModels
     {
         private readonly ICustomerDataProvider _customerDataProvider;
 
-
+        public DelegateCommand AddCommand { get; }
+        public DelegateCommand MoveNavigationCommand { get; }
+        public DelegateCommand DeleteCommand { get; }
 
         private CustomerItemViewModel? _selectedCustomer;
 
@@ -25,6 +28,7 @@ namespace FamilyGuyCoffee.CustomersApp.ViewModels
             }
         }
 
+        public bool HasCustomerSelected => SelectedCustomer is not null;
         public CustomerItemViewModel? SelectedCustomer
         {
             get => _selectedCustomer;
@@ -34,6 +38,8 @@ namespace FamilyGuyCoffee.CustomersApp.ViewModels
                 {
                     _selectedCustomer = value;
                     RaisePropertyChanged();
+                    RaisePropertyChanged(nameof(HasCustomerSelected));
+                    DeleteCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -41,6 +47,9 @@ namespace FamilyGuyCoffee.CustomersApp.ViewModels
         public CustomersViewModel(ICustomerDataProvider customerDataProvider)
         {
             _customerDataProvider = customerDataProvider;
+            AddCommand = new DelegateCommand(AddCustomer);
+            MoveNavigationCommand = new DelegateCommand(MoveNavigation);
+            DeleteCommand = new DelegateCommand(Delete, CanDelete);
         }
 
         public ObservableCollection<CustomerItemViewModel> Customers { get; } = new();
@@ -64,7 +73,7 @@ namespace FamilyGuyCoffee.CustomersApp.ViewModels
             }
         }
 
-        internal void AddCustomer()
+        private void AddCustomer(object? parameter)
         {
             var newCustomer = new CustomerItemViewModel(new Customer()
             {
@@ -77,9 +86,23 @@ namespace FamilyGuyCoffee.CustomersApp.ViewModels
             SelectedCustomer = newCustomer;
         }
 
-        internal void MoveNavigation()
+        private void MoveNavigation(object? parameter)
         {
             NavigationSidee = NavigationSidee == NavigationSide.Left ? NavigationSide.Right : NavigationSide.Left;
+        }
+        private bool CanDelete(object? parameter)
+        {
+            return SelectedCustomer is not null;
+        }
+
+        private void Delete(object? parameter)
+        {
+            if (SelectedCustomer is null)
+            {
+                return;
+            }
+            Customers.Remove(SelectedCustomer);
+            SelectedCustomer = null;
         }
 
     }

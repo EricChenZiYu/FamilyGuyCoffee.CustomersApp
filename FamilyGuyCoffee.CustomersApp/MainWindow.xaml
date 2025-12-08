@@ -45,7 +45,7 @@
         <!-- Added HeaderControl here -->
         <views:CustomersView Grid.Row="2" Grid.Column="0" />    
 
-        <StatusBar Grid.Row="3" >
+        <StatusBar Background="{StaticResource HeaderBackgroundBrush}" Grid.Row="3" >
             <StatusBarItem HorizontalAlignment="Center" FontSize="20" Content="(c) Family Guy Coffee" />
         </StatusBar>
     </Grid>
