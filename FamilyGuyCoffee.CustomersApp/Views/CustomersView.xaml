@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FamilyGuyCoffee.CustomersApp.Views"
+             xmlns:local="clr-namespace:FamilyGuyCoffee.CustomersApp.Views" 
+             xmlns:converters="clr-namespace:FamilyGuyCoffee.CustomersApp.Converters"
+             xmlns:viewModels="clr-namespace:FamilyGuyCoffee.CustomersApp.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewModels:CustomersViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:NavigationSideToGridColumnConverter x:Key="NavigationSideToGridColumnConvert"></converters:NavigationSideToGridColumnConverter>
+    </UserControl.Resources>
     <Grid Grid.Row="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -13,14 +19,14 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="CustomerListGrid" Grid.Column="0"  Background="#777">
+        <Grid x:Name="CustomerListGrid" Grid.Column="{Binding NavigationSidee, Converter={StaticResource NavigationSideToGridColumnConvert}}"  Background="#777">
             <Grid.RowDefinitions>
 
                 <RowDefinition Height="Auto" />
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button Margin="10" Width="75">
+                <Button Margin="10" Width="75" Click="ButtonAdd_OnClick">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Images/add.png" Height="18" />
                         <TextBlock Text="Add" />
@@ -32,18 +38,19 @@
                     <Image Source="/Images/move.png" Height="18"></Image>
                 </Button>
             </StackPanel>
-            <ListView Grid.Row="1" Margin="10 0 10 10">
-                <ListViewItem>Julia</ListViewItem>
+            <ListView x:Name="CustomerListView" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"  DisplayMemberPath="FirstName" Grid.Row="1" Margin="10 0 10 10">
+                <!--<ListViewItem>Julia</ListViewItem>
                 <ListViewItem>Michael</ListViewItem>
-                <ListViewItem>Sarah</ListViewItem>
+                <ListViewItem>Sarah</ListViewItem>-->
             </ListView>
         </Grid>
         <StackPanel Grid.Column="1" Margin="10">
             <Label>Firstname:</Label>
-            <TextBox Name="FirstnameTextBox"></TextBox>
+            <TextBox Text="{Binding SelectedCustomer.FirstName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="FirstnameTextBox"></TextBox>
             <Label>Last Name:</Label>
-            <TextBox Name="LastnameTextBox"></TextBox>
-            <CheckBox Margin="0 10 0 0">
+            <TextBox Text="{Binding SelectedCustomer.LastName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="LastnameTextBox"></TextBox>
+
+            <CheckBox IsChecked="{Binding SelectedCustomer.IsDeveloper, Mode=TwoWay}" Margin="0 10 0 0">
                 Is Developer
             </CheckBox>
         </StackPanel>
