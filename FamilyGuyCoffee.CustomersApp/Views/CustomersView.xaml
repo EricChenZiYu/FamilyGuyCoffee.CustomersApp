@@ -9,7 +9,16 @@
              d:DataContext="{d:DesignInstance Type=viewModels:CustomersViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate x:Key="CustomerDataTemplate" DataType="{x:Type viewModels:CustomerItemViewModel}" >
+            <StackPanel Orientation="Horizontal">
 
+                <TextBlock Text="{Binding FirstName}" FontWeight="Bold" />
+                <TextBlock Text="{Binding LastName}"  Margin="5 0 0 0 "/>
+                <!-- Changed from FirstName to LastName -->
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid Grid.Row="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -17,7 +26,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="CustomerListGrid" Grid.Column="{Binding NavigationSidee, Converter={StaticResource NavigationSideToGridColumnConvert}}"  Background="#777">
+        <Grid Width="260" x:Name="CustomerListGrid" Grid.Column="{Binding NavigationSidee, Converter={StaticResource NavigationSideToGridColumnConvert}}"  Background="#777">
             <Grid.RowDefinitions>
 
                 <RowDefinition Height="Auto" />
@@ -36,7 +45,13 @@
                     <Image Source="/Images/move.png" Height="18"></Image>
                 </Button>
             </StackPanel>
-            <ListView x:Name="CustomerListView" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"  DisplayMemberPath="FirstName" Grid.Row="1" Margin="10 0 10 10">
+            <ListView x:Name="CustomerListView" ItemsSource="{Binding Customers}"
+                      SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}" 
+                      Grid.Row="1" Margin="10 0 10 10"
+                      ItemTemplate="{StaticResource CustomerDataTemplate}"
+                      >
+ 
+                <!--DisplayMemberPath="FirstName"-->
                 <!--<ListViewItem>Julia</ListViewItem>
                 <ListViewItem>Michael</ListViewItem>
                 <ListViewItem>Sarah</ListViewItem>-->

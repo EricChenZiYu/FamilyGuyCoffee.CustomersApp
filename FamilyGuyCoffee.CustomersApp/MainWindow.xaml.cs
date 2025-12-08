@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using FamilyGuyCoffee.CustomersApp.Data;
+using FamilyGuyCoffee.CustomersApp.ViewModels;
+using System.Windows;
 
 namespace FamilyGuyCoffee.CustomersApp
 {
@@ -7,15 +9,22 @@ namespace FamilyGuyCoffee.CustomersApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly MainViewModel _viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            _viewModel = new MainViewModel(new CustomersViewModel(new CustomerDataProvider()));
+            DataContext = _viewModel;
+            Loaded += MainWindow_Loaded;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
+            await _viewModel.LoadAsync();
         }
+
+
 
 
     }

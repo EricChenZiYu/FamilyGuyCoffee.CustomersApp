@@ -43,7 +43,7 @@
         </Menu>
         <controls:HeaderControl Grid.Column="0" Grid.Row="1"  />
         <!-- Added HeaderControl here -->
-        <views:CustomersView Grid.Row="2" Grid.Column="0" />    
+        <views:CustomersView Grid.Row="2" Grid.Column="0" DataContext="{Binding SelectedViewModel}" />    
 
         <StatusBar Background="{StaticResource HeaderBackgroundBrush}" Grid.Row="3" >
             <StatusBarItem HorizontalAlignment="Center" FontSize="20" Content="(c) Family Guy Coffee" />

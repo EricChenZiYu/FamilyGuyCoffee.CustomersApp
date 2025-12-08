@@ -11,5 +11,9 @@ namespace FamilyGuyCoffee.CustomersApp.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public virtual async Task LoadAsync()
+        {
+            await Task.CompletedTask;
+        }
     }
 }

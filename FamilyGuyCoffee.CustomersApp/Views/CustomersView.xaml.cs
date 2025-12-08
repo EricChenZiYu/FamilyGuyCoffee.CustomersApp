@@ -1,7 +1,4 @@
-﻿using FamilyGuyCoffee.CustomersApp.Data;
-using FamilyGuyCoffee.CustomersApp.ViewModels;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace FamilyGuyCoffee.CustomersApp.Views
 {
@@ -10,20 +7,20 @@ namespace FamilyGuyCoffee.CustomersApp.Views
     /// </summary>
     public partial class CustomersView : UserControl
     {
-        private CustomersViewModel _viewModel;
+        //private CustomersViewModel _viewModel;
 
         public CustomersView()
         {
             InitializeComponent();
-            _viewModel = new CustomersViewModel(new CustomerDataProvider());
-            DataContext = _viewModel;
-            Loaded += CustomersView_Loaded;
+            //_viewModel = new CustomersViewModel(new CustomerDataProvider());
+            //DataContext = _viewModel;
+            //Loaded += CustomersView_Loaded;
         }
 
-        private async void CustomersView_Loaded(object sender, RoutedEventArgs e)
-        {
-            await _viewModel.LoadAsync();
-        }
+        //private async void CustomersView_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    await _viewModel.LoadAsync();
+        //}
         //private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         //{
         //    //var column = (int)CustomerListGrid.GetValue(Grid.ColumnProperty);

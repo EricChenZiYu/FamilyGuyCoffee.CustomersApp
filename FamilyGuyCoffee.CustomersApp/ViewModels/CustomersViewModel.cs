@@ -54,7 +54,7 @@ namespace FamilyGuyCoffee.CustomersApp.ViewModels
 
         public ObservableCollection<CustomerItemViewModel> Customers { get; } = new();
 
-        public async Task LoadAsync()
+        public override async Task LoadAsync()
         {
             if (Customers.Any())
             {
