@@ -11,6 +11,11 @@
         d:DesignWidth="500"
         d:DesignHeight="600"
         Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate x:Key="CustomersViewTemplate">
+            <views:CustomersView></views:CustomersView>
+        </DataTemplate>
+    </Window.Resources>
     <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
@@ -43,7 +48,9 @@
         </Menu>
         <controls:HeaderControl Grid.Column="0" Grid.Row="1"  />
         <!-- Added HeaderControl here -->
-        <views:CustomersView Grid.Row="2" Grid.Column="0" DataContext="{Binding SelectedViewModel}" />    
+        <ContentControl Grid.Row="2" Grid.Column="0" Content="{Binding SelectedViewModel}"
+                        ContentTemplate="{StaticResource CustomersViewTemplate}">
+        </ContentControl>
 
         <StatusBar Background="{StaticResource HeaderBackgroundBrush}" Grid.Row="3" >
             <StatusBarItem HorizontalAlignment="Center" FontSize="20" Content="(c) Family Guy Coffee" />
