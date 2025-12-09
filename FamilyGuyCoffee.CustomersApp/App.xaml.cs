@@ -26,6 +26,7 @@ namespace FamilyGuyCoffee.CustomersApp
             services.AddTransient<CustomersViewModel>();
             services.AddTransient<ProductsViewModel>();
             services.AddTransient<ICustomerDataProvider, CustomerDataProvider>();
+            services.AddTransient<IProductDataProvider, ProductDataProvider>();
         }
 
         protected override void OnStartup(StartupEventArgs e)
