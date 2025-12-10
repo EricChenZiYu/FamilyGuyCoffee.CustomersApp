@@ -2,7 +2,7 @@
 
 namespace FamilyGuyCoffee.CustomersApp.ViewModels
 {
-    public class CustomerItemViewModel : ViewModelbase
+    public class CustomerItemViewModel : ValidationViewModelBase
     {
         private readonly Customer _model;
 
@@ -20,6 +20,14 @@ namespace FamilyGuyCoffee.CustomersApp.ViewModels
 
                 _model.FirstName = value;
                 RaisePropertyChanged();
+                if (string.IsNullOrEmpty(_model.FirstName))
+                {
+                    AddError("Firstname is required");//, nameof(FirstName));
+                }
+                else
+                {
+                    ClearErrors();//nameof(FirstName));
+                }
             }
         }
         public string LastName
