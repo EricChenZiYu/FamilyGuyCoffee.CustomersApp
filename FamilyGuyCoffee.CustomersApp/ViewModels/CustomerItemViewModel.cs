@@ -37,6 +37,14 @@ namespace FamilyGuyCoffee.CustomersApp.ViewModels
             {
                 _model.LastName = value;
                 RaisePropertyChanged();
+                if (string.IsNullOrEmpty(_model.LastName))
+                {
+                    AddError("Lastname is required");
+                }
+                else
+                {
+                    ClearErrors();//nameof(FirstName));
+                }
             }
         }
         public bool IsDeveloper

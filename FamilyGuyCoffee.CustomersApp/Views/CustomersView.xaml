@@ -84,7 +84,7 @@
                      <!--Background="Aqua"-->
             <Label>Last Name:</Label>
             <TextBox Text="{Binding SelectedCustomer.LastName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="LastnameTextBox" 
-                   
+                     Style="{StaticResource TextBoxStyle}"
                      ></TextBox>
 
 
