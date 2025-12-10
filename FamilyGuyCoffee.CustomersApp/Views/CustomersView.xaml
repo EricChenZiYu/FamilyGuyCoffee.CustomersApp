@@ -58,7 +58,7 @@
             </ListView>
         </Grid>
         <StackPanel Visibility="{Binding HasCustomerSelected , Converter= { StaticResource BooleanToVisibilityConvert}}" Grid.Column="1" Margin="10">
-            <StackPanel.Resources>
+            <!--<StackPanel.Resources>
                 <Style TargetType="TextBox" x:Key="TextboxStyleBase" >
                     <Setter Property="Padding" Value="5"></Setter>
                 </Style>
@@ -67,20 +67,21 @@
                         <Setter Property="Background" Value="#555"></Setter>
                         <Setter Property="Foreground" Value="White"></Setter>
                        
-                        <!--<Setter Property="Grid.Row" Value="2"></Setter>-->
+                        --><!--<Setter Property="Grid.Row" Value="2"></Setter>--><!--
                     </Style.Setters>
                 </Style>
                 <Style TargetType="TextBox"   >
                     <Setter Property="FontStyle" Value="Italic"></Setter>
                 </Style>
-                <!--<Style TargetType="{x:Type TextBox}"   >
+                --><!--<Style TargetType="{x:Type TextBox}"   >
                     <Setter Property="FontStyle" Value="Italic"></Setter>
-                </Style>-->
-            </StackPanel.Resources>
+                </Style>--><!--
+            </StackPanel.Resources>-->
             <Label>Firstname:</Label>
             <TextBox Text="{Binding SelectedCustomer.FirstName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="FirstnameTextBox" 
-                     Style="{StaticResource TextBoxStyle}" Background="Aqua"
+                     Style="{StaticResource TextBoxStyle}"
                      ></TextBox>
+                     <!--Background="Aqua"-->
             <Label>Last Name:</Label>
             <TextBox Text="{Binding SelectedCustomer.LastName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="LastnameTextBox" 
                    
